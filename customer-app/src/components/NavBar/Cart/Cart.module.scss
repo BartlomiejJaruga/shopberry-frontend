@@ -1,0 +1,33 @@
+.cart_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: $White;
+    width: 20vw;
+    height: auto;
+    @include apply-font($font-heading);
+}
+
+.cart_icon_container {
+    position: relative;
+    margin-right: 1rem;
+}
+
+.cart_items_counter {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $Burgundy;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: $Text-White-Headers;
+}
+
+.cart_price {
+    font-size: 1rem;
+}

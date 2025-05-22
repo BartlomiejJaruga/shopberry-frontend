@@ -1,0 +1,34 @@
+// ========== FONTS ==========
+
+$font-heading: (
+  font-family: ('Space Grotesk', sans-serif),
+  font-weight: 400
+);
+
+$font-general: (
+  font-family: ('Inter', sans-serif),
+  font-weight: 300
+);
+
+@mixin apply-font($font-map) {
+  @each $prop, $value in $font-map {
+    #{$prop}: #{$value};
+  }
+}
+
+// ========== COLORS ==========
+
+// ---- MAIN COLORS PALLETE ----
+$Oxford-Blue: #0a0f2c;
+$Burgundy: #660019;
+$Anti-Flash-White: #ebebeb;
+$White: #ffffff;
+$Gold: #d4af37;
+
+// ---- TEXT COLORS PALLETE ----
+$Text-Black-Headers: #1a1a1a;
+$Text-Black-Texts: #333333;
+$Text-Black-SubTexts: #666666;
+$Text-White-Headers: #ffffff;
+$Text-White-Texts: #f5f5f5;
+$Text-White-SubTexts: #cccccc;

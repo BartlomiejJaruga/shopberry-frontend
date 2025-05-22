@@ -1,0 +1,16 @@
+.navbar_container {
+    position: sticky;
+    top: 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $White;
+    height: auto;
+    width: 100vw;
+    box-shadow: 0 0.1rem 5px rgba(0, 0, 0, 0.25);
+}
+
+.navbar_logo {
+    scale: 0.8;
+}

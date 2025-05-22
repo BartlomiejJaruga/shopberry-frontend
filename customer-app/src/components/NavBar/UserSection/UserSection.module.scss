@@ -1,0 +1,36 @@
+.user_sign_up_sign_in_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
+}
+
+.sign_up_button_container {
+    margin-right: 1rem;
+}
+
+.sign_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    border-radius: 0.5rem;
+    height: 2rem;
+    @include apply-font($font-heading);
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.sign_up_button {
+    background-color: $Burgundy;
+    color: $Text-White-Headers;
+    border: none;
+}
+
+.sign_in_button {
+    background-color: $White;
+    color: $Burgundy;
+    box-shadow: 0 0 0 0.2rem $Burgundy inset;
+}
