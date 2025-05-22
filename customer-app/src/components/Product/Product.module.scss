@@ -1,0 +1,50 @@
+.product_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $Oxford-Blue;
+    background-color: $White;
+    color: $Text-Black-Texts;
+    width: clamp(60vw, 60vw, 40rem);
+    height: auto;
+    margin: 0 0 2rem 0;
+    padding: 0;
+}
+
+.image {
+    width: 30%;
+    height: 100%;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 40%;
+    height: 100%;
+    background-color: $Burgundy;
+    color: $Text-White-Texts;
+}
+
+.price_container {
+    width: 30%;
+    height: 100%;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: $Burgundy;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+.add_to_cart_button {
+    width: clamp(3rem, 75%, 100%);
+    height: clamp(2rem, 2.5rem, 3rem);
+    background-color: $Burgundy;
+    border-radius: 0.5rem;
+    border: 0;
+    color: $Text-White-Texts;
+    @include apply-font($font-heading);
+    font-size: 1rem;
+}
