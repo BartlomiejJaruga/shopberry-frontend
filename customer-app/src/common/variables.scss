@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // ========== FONTS ==========
 
 $font-heading: (
@@ -21,6 +23,7 @@ $font-general: (
 // ---- MAIN COLORS PALLETE ----
 $Oxford-Blue: #0a0f2c;
 $Burgundy: #660019;
+$Burgundy-Hover: color.adjust($Burgundy, $lightness: 10%);
 $Anti-Flash-White: #ebebeb;
 $White: #ffffff;
 $Gold: #d4af37;

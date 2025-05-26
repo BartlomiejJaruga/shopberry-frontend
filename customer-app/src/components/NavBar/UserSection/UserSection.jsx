@@ -6,12 +6,13 @@ export default function UserSection() {
     const navigate = useNavigate();
 
     const handleSignIn = () => {
-        navigate("/auth");
-    }
-
+        navigate("/auth?authType=sign_in");
+    };
+    
     const handleSignUp = () => {
-        navigate("/auth");
-    }
+        navigate("/auth?authType=sign_up");
+    };
+      
 
 
     return (
