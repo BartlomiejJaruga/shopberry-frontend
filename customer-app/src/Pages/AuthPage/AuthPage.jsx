@@ -5,7 +5,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { authenticateUser } from '@slices/authSlice';
 import axiosInstance from '@services/axiosInstance';
 import { userRolesENUM } from '@enums';
-
+import CustomCheckBox from '@components/CustomCheckBox/CustomCheckBox';
 
 
 export default function AuthPage() {
@@ -58,6 +58,7 @@ export default function AuthPage() {
             <div>
                 <h1>Log In to ShopBerry</h1>
             </div>
+            <CustomCheckBox inputName="remember_me" labelText="Remember me"/>
             <div className={styles.auth_container}>
                 <div className={styles.auth_type_tabs_container}>
                     <div className={styles.sign_in_tab}>Sign In</div>
