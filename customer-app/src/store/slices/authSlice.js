@@ -22,9 +22,9 @@ export const authSlice = createSlice({
         },
         logoutUser(state) {
             state.isAuthenticated = false;
-            state.email = null;
-            state.first_name = null;
-            state.last_name = null;
+            state.userData.email = null;
+            state.userData.first_name = null;
+            state.userData.last_name = null;
         },
     },
 });
