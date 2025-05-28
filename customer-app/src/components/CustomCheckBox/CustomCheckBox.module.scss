@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    // font-size: 1rem; <-- Set by inline styles (passed with props)
     position: relative;
 }
 
@@ -21,17 +21,18 @@
 
 .checkbox_container label::before {
     content: '';
-    width: 1em;
-    height: 1em;
-    margin-right: 0.5em;
-    background-color: $White;
-    border: 0.05em solid $Text-Black-Texts;
-    border-radius: 0.25em;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+    padding: 0 0.04em 0.08em 0.04em;
+    background-color: $White;
+    border: 0.075em solid $Gray;
+    border-radius: 0.25em;
     color: $Text-White-Texts;
-    font-size: 1em;
+    transition: all 0.2s ease;
 }
 
 .checkbox_container label:hover::before,
@@ -40,15 +41,11 @@
 }
 
 .checkbox_container input[type='checkbox']:checked + label::before {
-    // content: '\002714';
+    content: '\2714';
     background-color: $Burgundy;
+    border: 0.075em solid $Burgundy;
 }
 
-.checkbox_container input[type='checkbox']:checked + label::after {
-    content: '\002714';
-    color: $Text-White-Texts;
-    font-size: 0.8em;
-    position: absolute;
-    top: 0.07em;
-    left: 0.27em;
+.checkbox_container input[type='checkbox']:focus + label::before {
+    box-shadow: 0 0 0.4em $Gray;
 }

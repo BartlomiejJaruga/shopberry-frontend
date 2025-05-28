@@ -58,7 +58,6 @@ export default function AuthPage() {
             <div>
                 <h1>Log In to ShopBerry</h1>
             </div>
-            <CustomCheckBox inputName="remember_me" labelText="Remember me"/>
             <div className={styles.auth_container}>
                 <div className={styles.auth_type_tabs_container}>
                     <div className={styles.sign_in_tab}>Sign In</div>
@@ -71,10 +70,7 @@ export default function AuthPage() {
                         <input type="email" name="email" placeholder="email" className={styles.form_text_inputs}/>
                         <input type="password" name="password" placeholder="password" className={styles.form_text_inputs}/>
                         <div className={styles.remember_me_and_forgot_password_container}>
-                            <div className={styles.remember_me_container}>
-                                <input type="checkbox" name="remember_me" id="remember_me" className={styles.form_checkbox}/>
-                                <label htmlFor="remember_me">Remember me</label>
-                            </div>
+                            <CustomCheckBox inputName="remember_me" labelText="Remember me" fontSize="1.1rem"/>
                             <button className={styles.forgot_password_button} onClick={handleForgotPassword}>forgot password?</button>
                         </div>
                         <button type="submit" className={styles.auth_button}>SIGN IN</button>

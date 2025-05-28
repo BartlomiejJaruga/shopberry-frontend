@@ -85,7 +85,7 @@
     width: 80%;
     height: 3.2rem;
     border: none;
-    box-shadow: 0 0 0 0.2rem $Text-Black-Texts inset;
+    box-shadow: 0 0 0 0.05rem $Text-Black-Texts inset;
     border-radius: 0.75rem;
     margin-top: 2rem;
     padding: 0 1rem;
@@ -116,10 +116,21 @@
 
 .forgot_password_button {
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
-    width: 50%;
+    width: auto;
+    border: none;
+    background-color: $White;
+    color: $Burgundy;
+    @include apply-font($font-general);
+    font-weight: 400;
+    font-size: 1rem;
+}
 
+.forgot_password_button:hover {
+    text-decoration: underline;
+    color: $Burgundy-Hover;
+    cursor: pointer;
 }
 
 .auth_button {
