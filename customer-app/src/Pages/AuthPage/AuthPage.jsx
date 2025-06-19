@@ -20,7 +20,7 @@ export default function AuthPage() {
         const registerCredentials = {
             email: "ArturMorgan@gmail.com",
             password: "1234",
-            role: userRolesENUM.USER,
+            role: userRolesENUM.CUSTOMER,
             first_name: "Artur",
             last_name: "Morgan",
         };
