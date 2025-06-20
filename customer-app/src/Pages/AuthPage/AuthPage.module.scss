@@ -6,5 +6,54 @@
     width: 100%;
     height: auto;
 
-    padding: 0 0 10vh 0;
+    padding: 5vh 0 10vh 0;
+}
+
+.return_to_main_page_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 0 5%;
+    font-size: 1.5rem;
+
+    .left_arrow_icon {
+        font-size: inherit;
+        height: 1em;
+        width: auto;
+        margin-right: 0.5em;
+        fill: $Burgundy;
+
+        transition: fill 0.2s ease;
+    }
+
+    span {
+        transition: color 0.2s ease,
+                    text-decoration 0s ease;
+
+        color: $Burgundy;
+        font-size: inherit;
+        @include apply-font($font-heading);
+    }
+
+    &:hover > span {
+        text-decoration: underline;
+        color: $Burgundy-Hover;
+    }
+
+    &:hover > .left_arrow_icon {
+        fill: $Burgundy-Hover;
+    }
+}
+
+.logo_container {
+    width: 15rem;
+    height: auto;
+    margin-bottom: 2rem;
+
+    img {
+        min-width: 80%;
+        max-width: 80%;
+        height: auto;
+    }
 }

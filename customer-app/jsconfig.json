@@ -7,6 +7,7 @@
       "@pages/*": ["src/Pages/*"],
       "@slices/*": ["src/store/slices/*"],
       "@icons/*": ["src/assets/icons/*"],
+      "@images/*": ["src/assets/images/*"],
       "@services/*": ["src/services/*"],
     }
   },

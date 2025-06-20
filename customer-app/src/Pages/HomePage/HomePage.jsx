@@ -1,10 +1,15 @@
-import styles from '@pages/HomePage/HomePage.module.scss';
+import styles from "@pages/HomePage/HomePage.module.scss";
 
-export default function HomePage(){
+import NavBar from "@components/NavBar/NavBar";
+
+export default function HomePage() {
     return (
-        <div className={styles.homepage_container}>
-            <img src="/logo.png" alt="ShopBerry Logo"/>
-            <h1>Welcome to ShopBerry Page!</h1>
-        </div>
-    )
+        <>
+            <NavBar />
+            <div className={styles.homepage_container}>
+                <img src="/logo.png" alt="ShopBerry Logo" />
+                <h1>Welcome to ShopBerry Page!</h1>
+            </div>
+        </>
+    );
 }
