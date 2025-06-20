@@ -19,15 +19,7 @@ export default function RegisterForm() {
         password: "",
         repeatPassword: "",
     });
-
-    const [formErrors, setFormErrors] = useState({
-        firstNameError: null,
-        lastNameError: null,
-        emailError: null,
-        repeatEmailError: null,
-        passwordError: null,
-        repeatPasswordError: null,
-    });
+    const [formError, setFormError] = useState(null);
 
     const handleFormChange = (e) => {
         const { name, value } = e.target;
@@ -35,8 +27,70 @@ export default function RegisterForm() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const emailMatchStatus = () => {
+        const { email, repeatEmail } = formData;
+
+        if (email === "" || repeatEmail === "") return "";
+
+        if (email !== repeatEmail)
+            return styles["credential_restriction--error"];
+
+        return styles["credential_restriction--good"];
+    };
+
+    const passwordMatchStatus = () => {
+        const { password, repeatPassword } = formData;
+
+        if (password === "" || repeatPassword === "") return "";
+
+        if (password !== repeatPassword)
+            return styles["credential_restriction--error"];
+
+        return styles["credential_restriction--good"];
+    };
+
+    const getPasswordValidationStatus = () => {
+        const { password } = formData;
+
+        return {
+            length: password.length >= 8 && password.length <= 20,
+            hasUpper: /[A-Z]/.test(password),
+            hasLower: /[a-z]/.test(password),
+            hasDigit: /\d/.test(password),
+            hasSpecial: /[!@#$%^&*(),.:{}\]\[\\/]/.test(password),
+        };
+    };
+
+    const passwordRestrictionsStatus = getPasswordValidationStatus();
+    const isPasswordValid = Object.values(passwordRestrictionsStatus).every(
+        Boolean
+    );
+
+    const isFormDataValid = () => {
+        setFormError(null);
+
+        if (!isPasswordValid) {
+            setFormError("Password is invalid!");
+            return false;
+        }
+
+        if (formData.email !== formData.repeatEmail) {
+            setFormError("E-mails are different!");
+            return false;
+        }
+
+        if (formData.password !== formData.repeatPassword) {
+            setFormError("Passwords are different!");
+            return false;
+        }
+
+        return true;
+    };
+
     const handleSignUpButtonClick = async (e) => {
         e.preventDefault();
+
+        if (!isFormDataValid()) return;
 
         console.log(formData);
     };
@@ -97,7 +151,11 @@ export default function RegisterForm() {
                         required
                     />
                     <div className={styles.credentials_restrictions_container}>
-                        <p className={styles.credential_restriction}>
+                        <p
+                            className={`${
+                                styles.credential_restriction
+                            } ${emailMatchStatus()}`}
+                        >
                             E-mails must match
                         </p>
                     </div>
@@ -111,19 +169,70 @@ export default function RegisterForm() {
                         required
                     />
                     <div className={styles.credentials_restrictions_container}>
-                        <p className={styles.credential_restriction}>
+                        <p
+                            className={`${styles.credential_restriction} ${
+                                formData.password === ""
+                                    ? ""
+                                    : isPasswordValid
+                                    ? styles["credential_restriction--good"]
+                                    : styles["credential_restriction--error"]
+                            }`}
+                        >
                             Password must contain:
                         </p>
-                        <p className={styles.credential_restriction}>
+                        <p
+                            className={`${styles.credential_restriction} ${
+                                formData.password === ""
+                                    ? ""
+                                    : passwordRestrictionsStatus.length
+                                    ? styles["credential_restriction--good"]
+                                    : styles["credential_restriction--error"]
+                            }`}
+                        >
                             - between 8 to 20 characters
                         </p>
-                        <p className={styles.credential_restriction}>
+                        <p
+                            className={`${styles.credential_restriction} ${
+                                formData.password === ""
+                                    ? ""
+                                    : passwordRestrictionsStatus.hasUpper
+                                    ? styles["credential_restriction--good"]
+                                    : styles["credential_restriction--error"]
+                            }`}
+                        >
                             - 1 uppercase letter
                         </p>
-                        <p className={styles.credential_restriction}>
+                        <p
+                            className={`${styles.credential_restriction} ${
+                                formData.password === ""
+                                    ? ""
+                                    : passwordRestrictionsStatus.hasLower
+                                    ? styles["credential_restriction--good"]
+                                    : styles["credential_restriction--error"]
+                            }`}
+                        >
                             - 1 lowercase letter
                         </p>
-                        <p className={styles.credential_restriction}>
+                        <p
+                            className={`${styles.credential_restriction} ${
+                                formData.password === ""
+                                    ? ""
+                                    : passwordRestrictionsStatus.hasDigit
+                                    ? styles["credential_restriction--good"]
+                                    : styles["credential_restriction--error"]
+                            }`}
+                        >
+                            - 1 digit
+                        </p>
+                        <p
+                            className={`${styles.credential_restriction} ${
+                                formData.password === ""
+                                    ? ""
+                                    : passwordRestrictionsStatus.hasSpecial
+                                    ? styles["credential_restriction--good"]
+                                    : styles["credential_restriction--error"]
+                            }`}
+                        >
                             - 1 special character
                         </p>
                     </div>
@@ -137,7 +246,11 @@ export default function RegisterForm() {
                         required
                     />
                     <div className={styles.credentials_restrictions_container}>
-                        <p className={styles.credential_restriction}>
+                        <p
+                            className={`${
+                                styles.credential_restriction
+                            } ${passwordMatchStatus()}`}
+                        >
                             Passwords must match
                         </p>
                     </div>
@@ -145,6 +258,9 @@ export default function RegisterForm() {
                     <button type="submit" className={styles.sign_up_button}>
                         SIGN UP
                     </button>
+                    {formError && (
+                        <p className={styles.form_error_message}>{formError}</p>
+                    )}
                 </form>
             </div>
         </div>

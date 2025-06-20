@@ -91,6 +91,11 @@
         padding: 0 1rem;
         
         font-size: 1rem;
+        
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0.2rem 0.1rem $Burgundy;
+        }
     }
 
     .remember_me_and_forgot_password_container {
@@ -125,12 +130,19 @@
         background-color: $Burgundy;
         border: none;
         border-radius: 0.8em;
-        margin-top: 2rem;
+        margin-top: 3rem;
         padding: 0.6em 3em;
+
+        cursor: pointer;
 
         color: $Text-White-Headers;
         font-size: 1.2rem;
         @include apply-font($font-heading);
+        
+        &:focus {
+            box-shadow: 0 0 1rem 0.1rem $Black;
+            outline: none;
+        } 
     }
 }
 
