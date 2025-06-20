@@ -29,7 +29,7 @@
     margin-right: 0.5em;
     padding: 0 0.04em 0.08em 0.04em;
     background-color: $White;
-    border: 0.075em solid $Gray;
+    border: 0.125em solid $Gray;
     border-radius: 0.25em;
     color: $Text-White-Texts;
     transition: all 0.2s ease;
@@ -43,7 +43,7 @@
 .checkbox_container input[type='checkbox']:checked + label::before {
     content: '\2714';
     background-color: $Burgundy;
-    border: 0.075em solid $Burgundy;
+    border: 0.125em solid $Burgundy;
 }
 
 .checkbox_container input[type='checkbox']:focus + label::before {
