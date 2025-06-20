@@ -1,3 +1,4 @@
+import { tokenNamesENUM } from "@enums";
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -6,7 +7,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem("Bearer_token");
+        const token = localStorage.getItem(tokenNamesENUM.ACCESS_TOKEN_NAME);
 
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;

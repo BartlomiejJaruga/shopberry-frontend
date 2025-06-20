@@ -6,6 +6,7 @@ const initialUserState = {
         email: null,
         first_name: null,
         last_name: null,
+        uuid: null,
     },
 };
 
@@ -15,16 +16,21 @@ export const authSlice = createSlice({
     reducers: {
         authenticateUser(state, action) {
             state.isAuthenticated = true;
+
             state.userData.email = action.payload.email;
             state.userData.first_name = action.payload.first_name;
             state.userData.last_name = action.payload.last_name;
+            state.userData.uuid = action.payload.uuid;
+
             console.log({ ...state.userData });
         },
         logoutUser(state) {
             state.isAuthenticated = false;
+
             state.userData.email = null;
             state.userData.first_name = null;
             state.userData.last_name = null;
+            state.userData.uuid = null;
         },
     },
 });
