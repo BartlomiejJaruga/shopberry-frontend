@@ -8,6 +8,7 @@ import { userRolesENUM } from "@enums";
 import CustomCheckBox from "@components/CustomCheckBox/CustomCheckBox";
 import RegisterForm from "./RegisterForm/RegisterForm";
 import LoginForm from "./LoginForm/LoginForm";
+import UserCreatedSuccessfullyModal from "./UserCreatedSuccessfullyModal/UserCreatedSuccessfullyModal";
 
 export default function AuthPage() {
     const dispatch = useDispatch();
@@ -23,6 +24,10 @@ export default function AuthPage() {
             {searchParams.get("authType") === "sign_up" && <RegisterForm />}
 
             {searchParams.get("authType") === "sign_in" && <LoginForm />}
+
+            {searchParams.get("authType") === "user_created" && (
+                <UserCreatedSuccessfullyModal />
+            )}
         </div>
     );
 }
