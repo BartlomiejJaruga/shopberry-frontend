@@ -57,11 +57,15 @@ export default function LoginForm() {
         navigate("/auth?authType=forgotPassword");
     };
 
+    const handleTabChange = () => {
+        navigate("/auth?authType=sign_up");
+    };
+
     return (
         <div className={styles.main_container}>
             <div className={styles.auth_type_tabs_container}>
                 <div>Sign In</div>
-                <div>Sign Up</div>
+                <div onClick={handleTabChange}>Sign Up</div>
             </div>
 
             <div className={styles.login_modal_container}>

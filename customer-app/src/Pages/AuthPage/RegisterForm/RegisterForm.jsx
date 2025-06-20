@@ -15,10 +15,14 @@ export default function RegisterForm() {
         e.preventDefault();
     };
 
+    const handleTabChange = () => {
+        navigate("/auth?authType=sign_in");
+    };
+
     return (
         <div className={styles.main_container}>
             <div className={styles.auth_type_tabs_container}>
-                <div>Sign In</div>
+                <div onClick={handleTabChange}>Sign In</div>
                 <div>Sign Up</div>
             </div>
             <div className={styles.register_modal_container}>
