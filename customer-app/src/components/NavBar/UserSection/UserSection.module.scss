@@ -58,6 +58,41 @@
 
 
 
+.favourite_products_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: auto;
+    font-size: 1.25rem;
+    cursor: pointer;
+
+    .heart_icon {
+        font-size: inherit;
+        height: 2.5em;
+        width: auto;
+        fill: $Black;
+
+        margin-right: 0.4em;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0.20em;
+
+        font-size: 0.85em;
+    }
+
+    &:hover > div p {
+        text-decoration: underline;
+    }
+}
+
+
+
 .account_wrapper {
     position: relative; 
     cursor: pointer;
@@ -68,20 +103,26 @@
         align-items: center;
         height: 80%;
         width: auto;
-        padding: 0.70em 1em;
-        font-size: 1.5rem;
+        padding: 0.9em 1em;
+        font-size: 1.25rem;
         
         .account_icon {
             font-size: inherit;
             height: 2em;
             width: auto;
             fill: $Black;
-    
-            margin-right: 0.5rem;
+
+            margin-right: 0.8em;
         }
     
         .user_names_container {
-            font-size: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0.20em;
+
+            font-size: 0.85em;
         }
     }
 

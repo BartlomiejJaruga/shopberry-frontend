@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import User from "@icons/user.svg?react";
 import SignIn from "@icons/sign-in.svg?react";
+import Account from "@icons/account.svg?react";
 import { logoutUser } from "@slices/authSlice";
 import { tokenNamesENUM } from "@enums";
+import Heart from "@icons/heart.svg?react";
 
 export default function UserSection() {
     const navigate = useNavigate();
@@ -28,7 +30,7 @@ export default function UserSection() {
     };
 
     return (
-        <div className={styles.user_section_container}>
+        <>
             {!isAuthenticated && (
                 <div className={styles.buttons_container}>
                     <button onClick={handleSignUp}>
@@ -43,22 +45,31 @@ export default function UserSection() {
             )}
 
             {isAuthenticated && (
-                <div className={styles.account_wrapper}>
-                    <div className={styles.account_container}>
-                        <User className={styles.account_icon} />
-                        <div className={styles.user_names_container}>
-                            <p>{userData.firstName}</p>
-                            <p>{userData.lastName}</p>
+                <>
+                    <div className={styles.favourite_products_container}>
+                        <Heart className={styles.heart_icon} />
+                        <div>
+                            <p>Favourite</p>
+                            <p>Products</p>
                         </div>
                     </div>
-                    <div className={styles.dropdown_menu}>
-                        <div>Account</div>
-                        <div>Orders</div>
-                        <div>Favourites</div>
-                        <div onClick={handleLogOut}>Log out</div>
+                    <div className={styles.account_wrapper}>
+                        <div className={styles.account_container}>
+                            <Account className={styles.account_icon} />
+                            <div className={styles.user_names_container}>
+                                <p>{userData.firstName}</p>
+                                <p>{userData.lastName}</p>
+                            </div>
+                        </div>
+                        <div className={styles.dropdown_menu}>
+                            <div>Account</div>
+                            <div>Orders</div>
+                            <div>Favourites</div>
+                            <div onClick={handleLogOut}>Log out</div>
+                        </div>
                     </div>
-                </div>
+                </>
             )}
-        </div>
+        </>
     );
 }
