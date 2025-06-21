@@ -22,7 +22,7 @@ export default function LoginForm() {
     const [formErrors, setFormErrors] = useState({
         emailError: null,
         passwordError: null,
-        badDataError: null,
+        responseError: null,
     });
 
     const handleFormChange = (e) => {
@@ -131,11 +131,14 @@ export default function LoginForm() {
             if (error.response && error.response.status === 403) {
                 setFormErrors((prev) => ({
                     ...prev,
-                    badDataError: "Incorrect e-mail or password",
+                    responseError: "Incorrect e-mail or password",
                 }));
-            }
-            //TODO add server error handling
-            else {
+            } else if (error.response && error.response.status === 500) {
+                setFormErrors((prev) => ({
+                    ...prev,
+                    responseError: "Server Error",
+                }));
+            } else {
                 console.error("Login failed: ", error);
             }
 
@@ -144,7 +147,7 @@ export default function LoginForm() {
     };
 
     const handleForgotPassword = () => {
-        navigate("/auth?authType=forgotPassword");
+        // navigate("/auth?authType=forgotPassword");
     };
 
     const handleTabChange = () => {
@@ -202,6 +205,7 @@ export default function LoginForm() {
                             onChangeAction={handleFormChange}
                         />
                         <button
+                            type="button"
                             className={styles.forgot_password_button}
                             onClick={handleForgotPassword}
                         >
@@ -225,9 +229,9 @@ export default function LoginForm() {
                             >
                                 SIGN IN
                             </button>
-                            {formErrors.badDataError && (
+                            {formErrors.responseError && (
                                 <p className={styles.form_error_message}>
-                                    {formErrors.badDataError}
+                                    {formErrors.responseError}
                                 </p>
                             )}
                         </>
