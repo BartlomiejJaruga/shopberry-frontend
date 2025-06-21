@@ -7,7 +7,7 @@ import LoadingIndicator from "@components/LoadingIndicator/LoadingIndicator";
 import { useDispatch } from "react-redux";
 import {
     updateMainCategories,
-    updateCategories,
+    updateCategoriesTree,
 } from "@slices/categoriesSlice";
 
 export default function HomePage() {
@@ -18,22 +18,17 @@ export default function HomePage() {
         setIsPageGettingLoaded(true);
 
         try {
-            const response = await axiosInstance.get("/v1/categories");
+            const response = await axiosInstance.get("/v1/categories/tree");
 
-            const { mainCategories, categories } = response.data.reduce(
-                (acc, category) => {
-                    if (category.parent_category === null) {
-                        acc.mainCategories.push(category);
-                    } else {
-                        acc.categories.push(category);
-                    }
-                    return acc;
-                },
-                { mainCategories: [], categories: [] }
+            const mainCategories = response.data.map(
+                ({ category_id, category_name }) => ({
+                    category_id,
+                    category_name,
+                })
             );
 
             dispatch(updateMainCategories({ mainCategories: mainCategories }));
-            dispatch(updateCategories({ categories: categories }));
+            dispatch(updateCategoriesTree({ categoriesTree: response.data }));
         } catch (error) {
             console.error(error);
         }
