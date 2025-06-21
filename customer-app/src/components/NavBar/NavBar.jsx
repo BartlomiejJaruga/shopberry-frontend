@@ -15,9 +15,9 @@ export default function NavBar() {
                     className={styles.navbar_logo}
                 />
             </Link>
-            <SearchBar />
-            <UserSection />
-            <Cart />
+            <SearchBar className={styles.search_bar} />
+            <UserSection className={styles.user_section} />
+            <Cart className={styles.cart} />
         </nav>
     );
 }
