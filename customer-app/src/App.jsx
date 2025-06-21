@@ -3,10 +3,36 @@ import HomePage from "@pages/HomePage/HomePage";
 import ProductsPage from "@pages/ProductsPage/ProductsPage";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import NotFoundPage from "@pages/NotFoundPage/NotFoundPage";
-import { useState } from "react";
+import { useEffect } from "react";
 import "./App.scss";
+import { useDispatch } from "react-redux";
+import { authenticateUser } from "@slices/authSlice";
 
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const storedSessionUserData = sessionStorage.getItem(
+            "authenticated_user_data"
+        );
+        const storedLocalUserData = localStorage.getItem(
+            "authenticated_user_data"
+        );
+
+        let parsedUserData;
+        if (storedLocalUserData) {
+            parsedUserData = JSON.parse(storedLocalUserData);
+        } else {
+            parsedUserData = JSON.parse(storedSessionUserData);
+        }
+
+        if (parsedUserData) {
+            console.log(parsedUserData);
+
+            dispatch(authenticateUser(parsedUserData));
+        }
+    }, [dispatch]);
+
     return (
         <>
             <Routes>
