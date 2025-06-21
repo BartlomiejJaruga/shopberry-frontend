@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // ========== FONTS ==========
 
 $font-heading: (
@@ -20,10 +22,18 @@ $font-general: (
 
 // ---- MAIN COLORS PALLETE ----
 $Oxford-Blue: #0a0f2c;
+$Oxford-Blue-Hover: color.adjust($Oxford-Blue, $lightness: 10%);
 $Burgundy: #660019;
+$Burgundy-Hover: color.adjust($Burgundy, $lightness: 15%);
 $Anti-Flash-White: #ebebeb;
 $White: #ffffff;
+$Gray: #666666;
+$Black: #000000;
 $Gold: #d4af37;
+$Beige: #F7E9D7;
+$Red: #dc3545;
+$Green: #28a745;
+
 
 // ---- TEXT COLORS PALLETE ----
 $Text-Black-Headers: #1a1a1a;
@@ -32,3 +42,30 @@ $Text-Black-SubTexts: #666666;
 $Text-White-Headers: #ffffff;
 $Text-White-Texts: #f5f5f5;
 $Text-White-SubTexts: #cccccc;
+
+
+// ========== MEDIA QUERIES ==========
+
+@mixin respond($bp) {
+  @if $bp == xs {
+    @media (max-width: 399px) { @content; }
+  } 
+  @else if $bp == sm {
+    @media (min-width: 400px) and (max-width: 599px) { @content; }
+  } 
+  @else if $bp == md {
+    @media (min-width: 600px) and (max-width: 767px) { @content; }
+  } 
+  @else if $bp == lg {
+    @media (min-width: 768px) and (max-width: 1023px) { @content; }
+  } 
+  @else if $bp == xl {
+    @media (min-width: 1024px) and (max-width: 1279px) { @content; }
+  } 
+  @else if $bp == xxl {
+    @media (min-width: 1280px) and (max-width: 1439px) { @content; }
+  } 
+  @else if $bp == ultra {
+    @media (min-width: 1440px) { @content; }
+  }
+}

@@ -1,36 +1,183 @@
-.user_sign_up_sign_in_container {
+.buttons_container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: auto;
     height: auto;
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border: none;
+        border-radius: 0.5rem;
+        
+        padding: 0.25em 1em;
+
+        @include apply-font($font-heading);
+        font-size: 1.5rem;
+
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    button:nth-child(1) {
+        background-color: $Burgundy;
+        color: $Text-White-Headers;
+        margin-right: 1rem;
+        font-weight: 300;
+
+        .user_icon {
+            font-size: inherit;
+            height: 1em;
+            width: auto;
+            stroke: $White;
+            fill: $White;
+
+            margin-right: 0.5em;
+        }
+    }
+
+    button:nth-child(2) {
+        background-color: $White;
+        color: $Burgundy;
+        box-shadow: 0 0 0 0.1rem $Burgundy inset;
+        font-weight: 400;
+
+        .sign_in_icon {
+            font-size: inherit;
+            height: 1em;
+            width: auto;
+            fill: $Burgundy;
+
+            margin-left: 0.5em;
+        }
+    }
 }
 
-.sign_up_button_container {
-    margin-right: 1rem;
-}
 
-.sign_buttons {
+
+.favourite_products_container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 8rem;
-    border-radius: 0.5rem;
-    height: 2rem;
-    @include apply-font($font-heading);
-    font-size: 1rem;
+    height: 80%;
+    width: auto;
+    font-size: 1.25rem;
     cursor: pointer;
-    text-decoration: none;
+
+    .heart_icon {
+        font-size: inherit;
+        height: 2.5em;
+        width: auto;
+        fill: $Black;
+
+        margin-right: 0.4em;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0.20em;
+
+        font-size: 0.85em;
+    }
+
+    &:hover > div p {
+        text-decoration: underline;
+    }
 }
 
-.sign_up_button {
-    background-color: $Burgundy;
-    color: $Text-White-Headers;
-    border: none;
+
+
+.account_wrapper {
+    position: relative; 
+    cursor: pointer;
+
+    .account_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80%;
+        width: auto;
+        padding: 0.9em 1em;
+        font-size: 1.25rem;
+        
+        .account_icon {
+            font-size: inherit;
+            height: 2em;
+            width: auto;
+            fill: $Black;
+
+            margin-right: 0.8em;
+        }
+    
+        .user_names_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0.20em;
+
+            font-size: 0.85em;
+        }
+    }
+
+    &:hover > .account_container .user_names_container p {
+        text-decoration: underline;
+    }
+
+
+    .dropdown_menu {
+        display: none;
+        
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 10;
+
+        border-radius: 0 0 0.75rem 0.75rem;
+        border-top: 0.1rem solid $Burgundy;
+
+        background-color: $White;
+        box-shadow: 0 0.2rem 0.1rem rgba(0,0,0, 0.15),
+                    0.2rem 0 0.1rem rgba(0,0,0, 0.15),
+                    -0.2rem 0 0.1rem rgba(0,0,0, 0.15);
+
+        font-size: 1rem;
+
+        div {
+            padding: 1em 5em;
+
+            &:hover {
+                background-color: #dadada;
+            }
+        }
+
+        div:last-of-type {
+            background-color: $Beige;
+            border-radius: 0 0 0.75rem 0.75rem;
+
+            &:hover {
+                background-color: $Red;
+                color: $Text-White-Texts;
+            }
+        }
+    }
+
+    &:hover .dropdown_menu {
+        display: block;
+    }
+
+    &:hover .account_container {
+        background-color: $White;
+        box-shadow: 0 -0.2rem 0.2rem rgba(0,0,0, 0.25),
+                    0.2rem 0 0.2rem rgba(0,0,0, 0.25),
+                    -0.2rem 0 0.2rem rgba(0,0,0, 0.25),
+                    0 -0.3rem $Burgundy inset;
+    }
 }
 
-.sign_in_button {
-    background-color: $White;
-    color: $Burgundy;
-    box-shadow: 0 0 0 0.2rem $Burgundy inset;
-}

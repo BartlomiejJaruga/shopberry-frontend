@@ -6,7 +6,10 @@
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/Pages/*"],
       "@slices/*": ["src/store/slices/*"],
-      "@icons/*": ["src/assets/icons/*"]
+      "@middleware/*": ["src/store/middleware/*"],
+      "@icons/*": ["src/assets/icons/*"],
+      "@images/*": ["src/assets/images/*"],
+      "@services/*": ["src/services/*"],
     }
   },
   "exclude": ["node_modules", "dist"]

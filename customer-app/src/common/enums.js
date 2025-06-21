@@ -1,5 +1,10 @@
-export const testENUM = Object.freeze({
-    TEST_VALUE_1: "test value 1",
-    TEST_VALUE_2: "test value 2",
-    TEST_VALUE_3: "test value 3"
+export const userRolesENUM = Object.freeze({
+    CUSTOMER: "CUSTOMER",
+    GUEST: "GUEST",
+    USER: "USER",
+});
+
+export const tokenNamesENUM = Object.freeze({
+    ACCESS_TOKEN_NAME: "bearer_token",
+    REFRESH_TOKEN_NAME: "refresh_token",
 });
