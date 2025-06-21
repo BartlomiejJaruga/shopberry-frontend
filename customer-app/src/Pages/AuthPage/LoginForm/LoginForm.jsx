@@ -109,8 +109,8 @@ export default function LoginForm() {
             dispatch(
                 authenticateUser({
                     email: requestBody.email,
-                    first_name: response.data.first_name,
-                    last_name: response.data.last_name,
+                    firstName: response.data.first_name,
+                    lastName: response.data.last_name,
                     uuid: response.data.user_id,
                 })
             );

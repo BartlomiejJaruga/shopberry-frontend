@@ -25,6 +25,15 @@
         fill: $Burgundy;
 
         transition: fill 0.2s ease;
+
+        &:hover {
+            fill: $Burgundy-Hover;
+        }
+
+        &:hover + span {
+            text-decoration: underline;
+            color: $Burgundy-Hover;
+        }
     }
 
     span {
@@ -34,15 +43,11 @@
         color: $Burgundy;
         font-size: inherit;
         @include apply-font($font-heading);
-    }
 
-    &:hover > span {
-        text-decoration: underline;
-        color: $Burgundy-Hover;
-    }
-
-    &:hover > .left_arrow_icon {
-        fill: $Burgundy-Hover;
+        &:hover {
+            text-decoration: underline;
+            color: $Burgundy-Hover;
+        }
     }
 }
 

@@ -1,31 +1,64 @@
-import { useNavigate } from 'react-router-dom';
+import styles from "./UserSection.module.scss";
 
-import styles from './UserSection.module.scss';
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import User from "@icons/user.svg?react";
+import SignIn from "@icons/sign-in.svg?react";
+import { logoutUser } from "@slices/authSlice";
+import { tokenNamesENUM } from "@enums";
 
 export default function UserSection() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { isAuthenticated, userData } = useSelector((state) => state.auth);
 
     const handleSignIn = () => {
         navigate("/auth?authType=sign_in");
     };
-    
+
     const handleSignUp = () => {
         navigate("/auth?authType=sign_up");
     };
-      
 
+    const handleLogOut = () => {
+        dispatch(logoutUser());
+
+        localStorage.removeItem(tokenNamesENUM.ACCESS_TOKEN_NAME);
+        localStorage.removeItem(tokenNamesENUM.REFRESH_TOKEN_NAME);
+    };
 
     return (
         <div className={styles.user_section_container}>
-            <div className={styles.user_sign_up_sign_in_container}>
-                <div className={styles.sign_up_button_container}>
-                    <button className={`${styles.sign_buttons} ${styles.sign_up_button}`} onClick={handleSignUp}>Sign Up</button>
+            {!isAuthenticated && (
+                <div className={styles.buttons_container}>
+                    <button onClick={handleSignUp}>
+                        <User className={styles.user_icon} />
+                        Sign Up
+                    </button>
+                    <button onClick={handleSignIn}>
+                        Sign In
+                        <SignIn className={styles.sign_in_icon} />
+                    </button>
                 </div>
-                <div className={styles.sign_in_button_container}>
-                    <button className={`${styles.sign_buttons} ${styles.sign_in_button}`} onClick={handleSignIn}>Sign In</button>
+            )}
+
+            {isAuthenticated && (
+                <div className={styles.account_wrapper}>
+                    <div className={styles.account_container}>
+                        <User className={styles.account_icon} />
+                        <div className={styles.user_names_container}>
+                            <p>{userData.firstName}</p>
+                            <p>{userData.lastName}</p>
+                        </div>
+                    </div>
+                    <div className={styles.dropdown_menu}>
+                        <div>Account</div>
+                        <div>Orders</div>
+                        <div>Favourites</div>
+                        <div onClick={handleLogOut}>Log out</div>
+                    </div>
                 </div>
-            </div>
-            
+            )}
         </div>
     );
 }

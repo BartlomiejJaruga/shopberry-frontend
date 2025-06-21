@@ -6,11 +6,24 @@
     justify-content: space-between;
     align-items: center;
     background-color: $White;
-    height: auto;
+    height: 5rem;
     width: 100%;
     box-shadow: 0 0.1rem 5px rgba(0, 0, 0, 0.25);
+
+    a:nth-child(1) {
+        height: 100%;
+        width: auto;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-left: 0.5rem;
+    }
+
+    .navbar_logo {
+        height: 80%;
+        width: auto;
+    }
 }
 
-.navbar_logo {
-    scale: 0.8;
-}

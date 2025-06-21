@@ -4,8 +4,8 @@ const initialUserState = {
     isAuthenticated: false,
     userData: {
         email: null,
-        first_name: null,
-        last_name: null,
+        firstName: null,
+        lastName: null,
         uuid: null,
     },
 };
@@ -18,8 +18,8 @@ export const authSlice = createSlice({
             state.isAuthenticated = true;
 
             state.userData.email = action.payload.email;
-            state.userData.first_name = action.payload.first_name;
-            state.userData.last_name = action.payload.last_name;
+            state.userData.firstName = action.payload.firstName;
+            state.userData.lastName = action.payload.lastName;
             state.userData.uuid = action.payload.uuid;
 
             console.log({ ...state.userData });
@@ -28,8 +28,8 @@ export const authSlice = createSlice({
             state.isAuthenticated = false;
 
             state.userData.email = null;
-            state.userData.first_name = null;
-            state.userData.last_name = null;
+            state.userData.firstName = null;
+            state.userData.lastName = null;
             state.userData.uuid = null;
         },
     },
