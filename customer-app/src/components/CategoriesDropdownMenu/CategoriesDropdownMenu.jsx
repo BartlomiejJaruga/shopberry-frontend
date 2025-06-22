@@ -5,7 +5,7 @@ import ArrowRight from "@icons/arrow-right.svg?react";
 import { useSelector } from "react-redux";
 
 export default function CategoriesDropdownMenu() {
-    const categoryTree = useSelector(
+    const categoriesTree = useSelector(
         (state) => state.categories.categoriesTree
     );
     const [isDropDownMenuOpen, setIsDropDownMenuOpen] = useState(true);
@@ -30,6 +30,51 @@ export default function CategoriesDropdownMenu() {
         }
     };
 
+    const handleCategoryClick = (categoryId) => {
+        console.log(categoryId);
+    };
+
+    const getSubcategories = (tree, categoryId) => {
+        let result = null;
+
+        const dfs = (nodes) => {
+            for (const node of nodes) {
+                if (node.category_id === categoryId) {
+                    result = node.children || [];
+                    return; // zatrzymaj po znalezieniu
+                }
+                if (node.children && node.children.length > 0) {
+                    dfs(node.children);
+                    if (result) return; // jeśli już znaleziono, zakończ dalsze przeszukiwanie
+                }
+            }
+        };
+
+        dfs(tree);
+        return result || [];
+    };
+
+    const renderSubcategories = (subcategories, level = 1) => {
+        return subcategories.map((subcat) => (
+            <div
+                key={subcat.category_id}
+                className={`${styles["subcategory-item"]} ${
+                    styles[`level-${level}`]
+                }`}
+            >
+                <div
+                    className={styles["subcategory-name"]}
+                    onClick={() => handleCategoryClick(subcat.category_id)}
+                >
+                    {subcat.category_name}
+                </div>
+                {subcat.children?.length > 0 && (
+                    <div>{renderSubcategories(subcat.children, level + 1)}</div>
+                )}
+            </div>
+        ));
+    };
+
     return (
         <div className={styles.main_container}>
             <div className={styles.dropdown_trigger} onClick={toggleDropdown}>
@@ -43,14 +88,17 @@ export default function CategoriesDropdownMenu() {
                             className={styles.category_list}
                             onMouseLeave={handleCategoryListMouseLeave}
                         >
-                            {categoryTree.map((category) => (
+                            {categoriesTree.map((category) => (
                                 <li
                                     key={category.category_id}
                                     className={styles.category_item}
-                                    onMouseEnter={() =>
-                                        setHoveredCategory(
-                                            category.category_name
+                                    onClick={() =>
+                                        handleCategoryClick(
+                                            category.category_id
                                         )
+                                    }
+                                    onMouseEnter={() =>
+                                        setHoveredCategory(category.category_id)
                                     }
                                 >
                                     {category.category_name}
@@ -68,8 +116,12 @@ export default function CategoriesDropdownMenu() {
                             onMouseEnter={handleSubMenuMouseEnter}
                             onMouseLeave={() => setHoveredCategory(null)}
                         >
-                            <h3>{hoveredCategory}</h3>
-                            <p>Here goes sub-menu content...</p>
+                            {renderSubcategories(
+                                getSubcategories(
+                                    categoriesTree,
+                                    hoveredCategory
+                                )
+                            )}
                         </div>
                     )}
                 </>

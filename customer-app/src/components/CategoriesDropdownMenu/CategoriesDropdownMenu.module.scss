@@ -81,15 +81,53 @@
     position: absolute;
     top: 0;
     left: 100%;
-
+    
     min-height: 50vh;
     height: auto;
     width: calc(100vw - 100%);
+    padding: 0.75em 0.5em;
 
+    display: flex;
+    // justify-content: space-between;     <--- pretty nice settings also
+    // align-items: flex-start;
+    align-content: flex-start;   //  <--- turn this off if "justify-content: space-between" and "align-items: flex-start;"
+    flex-wrap: wrap;
+    
     background-color: $White;
     border: 0.2em solid $Burgundy;
-    border-radius: 0.5em;
+    border-radius: 0 0 0.5em 0.5em;
+    box-shadow: 0 0.5em 0.5em rgba(0,0,0, 0.4);
 
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+
+    .subcategory-item {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    
+        &.level-1 {
+            margin: 0 1em 2em 1em;
+
+            font-size: 1em;
+            color: $Burgundy-Hover;
+            @include apply-font($font-heading);
+        }
+    
+        &.level-2 {
+            font-size: 0.75em;
+            color: $Text-Black-Texts;
+        }
+    }
+
+    .subcategory-name {
+        cursor: pointer;
+        padding: 0.25em 0;
+    
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
+
+    
