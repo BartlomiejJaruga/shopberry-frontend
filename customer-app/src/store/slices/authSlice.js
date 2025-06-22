@@ -48,9 +48,17 @@ export const authSlice = createSlice({
         setAuthGettingLoaded(state, action) {
             state.isAuthGettingLoaded = action.payload.isAuthGettingLoaded;
         },
+        updateUserNames(state, action) {
+            state.userData.firstName = action.payload.firstName;
+            state.userData.lastName = action.payload.lastName;
+        },
     },
 });
 
-export const { authenticateUser, logoutUser, setAuthGettingLoaded } =
-    authSlice.actions;
+export const {
+    authenticateUser,
+    logoutUser,
+    setAuthGettingLoaded,
+    updateUserNames,
+} = authSlice.actions;
 export default authSlice.reducer;

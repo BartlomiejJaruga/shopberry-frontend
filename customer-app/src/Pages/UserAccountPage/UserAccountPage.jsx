@@ -1,7 +1,6 @@
 import styles from "./UserAccountPage.module.scss";
 
 import NavBar from "@components/NavBar/NavBar";
-import { useDispatch } from "react-redux";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { userAccountSectionNamesENUM } from "@enums";
 import YourAccountSection from "./YourAccountSection/YourAccountSection";
@@ -22,7 +21,7 @@ export default function UserAccountPage() {
                                     searchParams.get("section") ===
                                     userAccountSectionNamesENUM.YOUR_ACCOUNT
                                         ? styles.active_tab
-                                        : ""
+                                        : styles.inactive_tab
                                 }
                                 onClick={() => {
                                     navigate(
@@ -37,7 +36,7 @@ export default function UserAccountPage() {
                                     searchParams.get("section") ===
                                     userAccountSectionNamesENUM.ORDERS
                                         ? styles.active_tab
-                                        : ""
+                                        : styles.inactive_tab
                                 }
                                 onClick={() => {
                                     navigate(

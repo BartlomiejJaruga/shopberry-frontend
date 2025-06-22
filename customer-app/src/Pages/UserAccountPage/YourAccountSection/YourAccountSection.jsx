@@ -3,10 +3,12 @@ import styles from "./YourAccountSection.module.scss";
 import axiosInstance from "@services/axiosInstance";
 import { useEffect, useState, useId } from "react";
 import LoadingIndicator from "@components/LoadingIndicator/LoadingIndicator";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUserNames } from "@slices/authSlice";
 
 export default function YourAccountSection() {
     const uniqueId = useId();
+    const dispatch = useDispatch();
     const [isPageGettingLoaded, setIsPageGettingLoaded] = useState(true);
     const authUserData = useSelector((state) => state.auth.userData);
     const [userData, setUserData] = useState({
@@ -16,10 +18,37 @@ export default function YourAccountSection() {
         mainAddress: null,
     });
 
-    const handleUserChangeNameFormSubmit = (e) => {
+    const handleUserChangeNameFormSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(userData);
+        const requestBody = {
+            first_name: userData.firstName,
+            last_name: userData.lastName,
+        };
+
+        try {
+            const response = await axiosInstance.patch(
+                `/v1/customers/${authUserData.uuid}`,
+                requestBody
+            );
+
+            const mappedUserData = {
+                firstName: response.data.first_name,
+                lastName: response.data.last_name,
+                createdAt: response.data.created_at,
+                mainAddress: response.data.main_address,
+            };
+
+            dispatch(
+                updateUserNames({
+                    firstName: mappedUserData.firstName,
+                    lastName: mappedUserData.lastName,
+                })
+            );
+            setUserData(mappedUserData);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const getUserDataFromDatabase = async () => {
@@ -30,12 +59,12 @@ export default function YourAccountSection() {
                 `/v1/customers/${authUserData.uuid}`
             );
 
-            const mappedUserData = response.data.map((data) => ({
-                firstName: data.first_name,
-                lastName: data.last_name,
-                createdAt: data.created_at,
-                mainAddress: data.main_address,
-            }));
+            const mappedUserData = {
+                firstName: response.data.first_name,
+                lastName: response.data.last_name,
+                createdAt: response.data.created_at,
+                mainAddress: response.data.main_address,
+            };
 
             setUserData(mappedUserData);
         } catch (error) {
