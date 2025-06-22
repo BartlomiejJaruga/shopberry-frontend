@@ -3,6 +3,7 @@ import HomePage from "@pages/HomePage/HomePage";
 import ProductsPage from "@pages/ProductsPage/ProductsPage";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import NotFoundPage from "@pages/NotFoundPage/NotFoundPage";
+import CategoryPage from "@pages/CategoryPage/CategoryPage";
 import { useEffect } from "react";
 import "./App.scss";
 import { useDispatch } from "react-redux";
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/auth" element={<AuthPage />} />
+                <Route path="/category" element={<CategoryPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </>
