@@ -3,8 +3,10 @@ import styles from "./CategoriesDropdownMenu.module.scss";
 import { useState, useRef } from "react";
 import ArrowRight from "@icons/arrow-right.svg?react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function CategoriesDropdownMenu({ isDropDownOpened }) {
+    const navigate = useNavigate();
     const categoriesTree = useSelector(
         (state) => state.categories.categoriesTree
     );
@@ -31,8 +33,9 @@ export default function CategoriesDropdownMenu({ isDropDownOpened }) {
         }
     };
 
-    const handleCategoryClick = (categoryId) => {
-        console.log(categoryId);
+    const handleCategoryClick = (categoryId, categoryName) => {
+        setHoveredCategory(null);
+        navigate(`/category?id=${categoryId}&name=${categoryName}`);
     };
 
     const getSubcategories = (tree, categoryId) => {
@@ -42,11 +45,11 @@ export default function CategoriesDropdownMenu({ isDropDownOpened }) {
             for (const node of nodes) {
                 if (node.category_id === categoryId) {
                     result = node.children || [];
-                    return; // zatrzymaj po znalezieniu
+                    return;
                 }
                 if (node.children && node.children.length > 0) {
                     dfs(node.children);
-                    if (result) return; // jeśli już znaleziono, zakończ dalsze przeszukiwanie
+                    if (result) return;
                 }
             }
         };
@@ -65,7 +68,12 @@ export default function CategoriesDropdownMenu({ isDropDownOpened }) {
             >
                 <div
                     className={styles["subcategory-name"]}
-                    onClick={() => handleCategoryClick(subcat.category_id)}
+                    onClick={() =>
+                        handleCategoryClick(
+                            subcat.category_id,
+                            subcat.category_name
+                        )
+                    }
                 >
                     {subcat.category_name}
                 </div>
@@ -95,7 +103,8 @@ export default function CategoriesDropdownMenu({ isDropDownOpened }) {
                                     className={styles.category_item}
                                     onClick={() =>
                                         handleCategoryClick(
-                                            category.category_id
+                                            category.category_id,
+                                            category.category_name
                                         )
                                     }
                                     onMouseEnter={() =>

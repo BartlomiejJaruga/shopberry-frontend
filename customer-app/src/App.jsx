@@ -3,6 +3,7 @@ import HomePage from "@pages/HomePage/HomePage";
 import ProductsPage from "@pages/ProductsPage/ProductsPage";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import NotFoundPage from "@pages/NotFoundPage/NotFoundPage";
+import CategoryPage from "@pages/CategoryPage/CategoryPage";
 import SignedUserRoute from "./routes/SignedUserRoute";
 import UnauthorizedPage from "@pages/UnauthorizedPage/UnauthorizedPage";
 import { useEffect } from "react";
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/auth" element={<AuthPage />} />
+                <Route path="/category" element={<CategoryPage />} />
                 <Route path="/unauthorized" element={<UnauthorizedPage />} />
                 <Route path="*" element={<NotFoundPage />} />
 
