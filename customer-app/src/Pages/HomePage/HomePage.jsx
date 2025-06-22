@@ -7,8 +7,9 @@ import LoadingIndicator from "@components/LoadingIndicator/LoadingIndicator";
 import { useDispatch } from "react-redux";
 import {
     updateMainCategories,
-    updateCategories,
+    updateCategoriesTree,
 } from "@slices/categoriesSlice";
+import CategoriesDropdownMenu from "@components/CategoriesDropdownMenu/CategoriesDropdownMenu";
 
 export default function HomePage() {
     const dispatch = useDispatch();
@@ -18,22 +19,17 @@ export default function HomePage() {
         setIsPageGettingLoaded(true);
 
         try {
-            const response = await axiosInstance.get("/v1/categories");
+            const response = await axiosInstance.get("/v1/categories/tree");
 
-            const { mainCategories, categories } = response.data.reduce(
-                (acc, category) => {
-                    if (category.parent_category === null) {
-                        acc.mainCategories.push(category);
-                    } else {
-                        acc.categories.push(category);
-                    }
-                    return acc;
-                },
-                { mainCategories: [], categories: [] }
+            const mainCategories = response.data.map(
+                ({ category_id, category_name }) => ({
+                    category_id,
+                    category_name,
+                })
             );
 
             dispatch(updateMainCategories({ mainCategories: mainCategories }));
-            dispatch(updateCategories({ categories: categories }));
+            dispatch(updateCategoriesTree({ categoriesTree: response.data }));
         } catch (error) {
             console.error(error);
         }
@@ -60,8 +56,13 @@ export default function HomePage() {
                 <>
                     <NavBar />
                     <div className={styles.homepage_container}>
-                        <img src="/logo.png" alt="ShopBerry Logo" />
-                        <h1>Welcome to ShopBerry Page!</h1>
+                        <aside>
+                            <CategoriesDropdownMenu isDropDownOpened={true} />
+                        </aside>
+                        <main>
+                            <img src="/logo.png" alt="ShopBerry Logo" />
+                            <h1>Welcome to ShopBerry Page!</h1>
+                        </main>
                     </div>
                 </>
             )}
