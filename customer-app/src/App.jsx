@@ -3,10 +3,13 @@ import HomePage from "@pages/HomePage/HomePage";
 import ProductsPage from "@pages/ProductsPage/ProductsPage";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import NotFoundPage from "@pages/NotFoundPage/NotFoundPage";
+import SignedUserRoute from "./routes/SignedUserRoute";
+import UnauthorizedPage from "@pages/UnauthorizedPage/UnauthorizedPage";
 import { useEffect } from "react";
 import "./App.scss";
 import { useDispatch } from "react-redux";
-import { authenticateUser } from "@slices/authSlice";
+import { authenticateUser, setAuthGettingLoaded } from "@slices/authSlice";
+import UserAccountPage from "@pages/UserAccountPage/UserAccountPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -27,19 +30,26 @@ function App() {
         }
 
         if (parsedUserData) {
-            console.log(parsedUserData);
-
             dispatch(authenticateUser(parsedUserData));
+        } else {
+            dispatch(setAuthGettingLoaded(false));
         }
     }, [dispatch]);
 
     return (
         <>
             <Routes>
+                {/* Public GUEST routes */}
                 <Route path="/" element={<HomePage />} />
                 <Route path="/products" element={<ProductsPage />} />
                 <Route path="/auth" element={<AuthPage />} />
+                <Route path="/unauthorized" element={<UnauthorizedPage />} />
                 <Route path="*" element={<NotFoundPage />} />
+
+                {/* Protected CUSTOMER routes */}
+                <Route element={<SignedUserRoute />}>
+                    <Route path="/account" element={<UserAccountPage />} />
+                </Route>
             </Routes>
         </>
     );

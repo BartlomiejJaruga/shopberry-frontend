@@ -6,7 +6,7 @@ import User from "@icons/user.svg?react";
 import SignIn from "@icons/sign-in.svg?react";
 import Account from "@icons/account.svg?react";
 import { logoutUser } from "@slices/authSlice";
-import { tokenNamesENUM } from "@enums";
+import { tokenNamesENUM, userAccountSectionNamesENUM } from "@enums";
 import Heart from "@icons/heart.svg?react";
 
 export default function UserSection() {
@@ -27,6 +27,8 @@ export default function UserSection() {
 
         localStorage.removeItem(tokenNamesENUM.ACCESS_TOKEN_NAME);
         localStorage.removeItem(tokenNamesENUM.REFRESH_TOKEN_NAME);
+
+        navigate("/");
     };
 
     return (
@@ -62,8 +64,24 @@ export default function UserSection() {
                             </div>
                         </div>
                         <div className={styles.dropdown_menu}>
-                            <div>Account</div>
-                            <div>Orders</div>
+                            <div
+                                onClick={() => {
+                                    navigate(
+                                        `/account?section=${userAccountSectionNamesENUM.YOUR_ACCOUNT}`
+                                    );
+                                }}
+                            >
+                                Account
+                            </div>
+                            <div
+                                onClick={() => {
+                                    navigate(
+                                        `/account?section=${userAccountSectionNamesENUM.ORDERS}`
+                                    );
+                                }}
+                            >
+                                Orders
+                            </div>
                             <div>Favourites</div>
                             <div onClick={handleLogOut}>Log out</div>
                         </div>

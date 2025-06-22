@@ -4,8 +4,6 @@ export const authMiddleware = (store) => (next) => (action) => {
     if (authenticateUser.match(action)) {
         const { rememberMe, ...userData } = action.payload;
 
-        console.log(rememberMe);
-        console.log(userData);
         if (rememberMe) {
             localStorage.setItem(
                 "authenticated_user_data",
