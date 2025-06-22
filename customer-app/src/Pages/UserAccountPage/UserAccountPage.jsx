@@ -4,6 +4,7 @@ import NavBar from "@components/NavBar/NavBar";
 import { useDispatch } from "react-redux";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { userAccountSectionNamesENUM } from "@enums";
+import YourAccountSection from "./YourAccountSection/YourAccountSection";
 
 export default function UserAccountPage() {
     const navigate = useNavigate();
@@ -17,6 +18,12 @@ export default function UserAccountPage() {
                     <div className={styles.user_account_tabs_container}>
                         <ul>
                             <li
+                                className={
+                                    searchParams.get("section") ===
+                                    userAccountSectionNamesENUM.YOUR_ACCOUNT
+                                        ? styles.active_tab
+                                        : ""
+                                }
                                 onClick={() => {
                                     navigate(
                                         `/account?section=${userAccountSectionNamesENUM.YOUR_ACCOUNT}`
@@ -26,6 +33,12 @@ export default function UserAccountPage() {
                                 Your Account
                             </li>
                             <li
+                                className={
+                                    searchParams.get("section") ===
+                                    userAccountSectionNamesENUM.ORDERS
+                                        ? styles.active_tab
+                                        : ""
+                                }
                                 onClick={() => {
                                     navigate(
                                         `/account?section=${userAccountSectionNamesENUM.ORDERS}`
@@ -40,7 +53,7 @@ export default function UserAccountPage() {
                 <main>
                     {searchParams.get("section") ===
                         userAccountSectionNamesENUM.YOUR_ACCOUNT && (
-                        <div>Your Account</div>
+                        <YourAccountSection />
                     )}
 
                     {searchParams.get("section") ===

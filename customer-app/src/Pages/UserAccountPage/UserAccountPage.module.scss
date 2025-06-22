@@ -11,10 +11,40 @@
 
         .user_account_tabs_container {
             width: 100%;
+
+            ul li {
+                width: 100%;
+                padding: 1em 0.5em;
+                border-bottom: 0.05em solid $Oxford-Blue;
+                
+                cursor: pointer;
+                text-decoration: none;
+                transition: border-right 0.2s ease,
+                            background-color 0.2s ease;
+                
+                font-size: 1.5em;
+
+                &:hover {
+                    background-color: $White-Hover;
+                    border-right: 0.35em solid $Burgundy-Hover;
+                }
+
+                
+            }
+
+            .active_tab {
+                border-right: 0.75em solid $Burgundy-Hover;
+                border-bottom: 0.05em solid $Burgundy-Hover;
+                color: $Burgundy-Hover;
+            }
         }
     }
 
     main {
         flex-grow: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
