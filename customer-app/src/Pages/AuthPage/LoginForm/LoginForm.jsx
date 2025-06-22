@@ -112,6 +112,7 @@ export default function LoginForm() {
                     firstName: response.data.first_name,
                     lastName: response.data.last_name,
                     uuid: response.data.user_id,
+                    userType: userRolesENUM.CUSTOMER,
                     rememberMe: rememberMe,
                 })
             );
