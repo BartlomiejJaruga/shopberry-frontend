@@ -4,11 +4,12 @@ import { useState, useRef } from "react";
 import ArrowRight from "@icons/arrow-right.svg?react";
 import { useSelector } from "react-redux";
 
-export default function CategoriesDropdownMenu() {
+export default function CategoriesDropdownMenu({ isDropDownOpened }) {
     const categoriesTree = useSelector(
         (state) => state.categories.categoriesTree
     );
-    const [isDropDownMenuOpen, setIsDropDownMenuOpen] = useState(true);
+    const [isDropDownMenuOpen, setIsDropDownMenuOpen] =
+        useState(isDropDownOpened);
     const [hoveredCategory, setHoveredCategory] = useState(null);
     const closeSubMenuTimeoutRef = useRef(null);
 

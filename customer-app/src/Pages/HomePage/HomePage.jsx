@@ -57,7 +57,7 @@ export default function HomePage() {
                     <NavBar />
                     <div className={styles.homepage_container}>
                         <aside>
-                            <CategoriesDropdownMenu />
+                            <CategoriesDropdownMenu isDropDownOpened={true} />
                         </aside>
                         <main>
                             <img src="/logo.png" alt="ShopBerry Logo" />
