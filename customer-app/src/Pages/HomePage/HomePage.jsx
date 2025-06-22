@@ -9,6 +9,7 @@ import {
     updateMainCategories,
     updateCategoriesTree,
 } from "@slices/categoriesSlice";
+import CategoriesDropdownMenu from "@components/CategoriesDropdownMenu/CategoriesDropdownMenu";
 
 export default function HomePage() {
     const dispatch = useDispatch();
@@ -55,8 +56,13 @@ export default function HomePage() {
                 <>
                     <NavBar />
                     <div className={styles.homepage_container}>
-                        <img src="/logo.png" alt="ShopBerry Logo" />
-                        <h1>Welcome to ShopBerry Page!</h1>
+                        <aside>
+                            <CategoriesDropdownMenu />
+                        </aside>
+                        <main>
+                            <img src="/logo.png" alt="ShopBerry Logo" />
+                            <h1>Welcome to ShopBerry Page!</h1>
+                        </main>
                     </div>
                 </>
             )}

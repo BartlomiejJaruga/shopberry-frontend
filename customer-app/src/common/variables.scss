@@ -27,6 +27,7 @@ $Burgundy: #660019;
 $Burgundy-Hover: color.adjust($Burgundy, $lightness: 15%);
 $Anti-Flash-White: #ebebeb;
 $White: #ffffff;
+$White-Hover: color.adjust($White, $lightness: -15%);
 $Gray: #666666;
 $Black: #000000;
 $Gold: #d4af37;
