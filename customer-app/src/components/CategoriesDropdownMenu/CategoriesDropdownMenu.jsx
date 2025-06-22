@@ -35,6 +35,7 @@ export default function CategoriesDropdownMenu({ isDropDownOpened }) {
 
     const handleCategoryClick = (categoryId, categoryName) => {
         setHoveredCategory(null);
+        sessionStorage.removeItem("cached_category_products");
         navigate(`/category?id=${categoryId}&name=${categoryName}`);
     };
 
