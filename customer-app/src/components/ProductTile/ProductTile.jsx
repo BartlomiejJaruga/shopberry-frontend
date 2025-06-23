@@ -14,7 +14,17 @@ export default function ProductTile({ productData, attributesData }) {
 
     return (
         <div className={styles.main_container}>
-            <div className={styles.image_container}>Image Placeholder</div>
+            <div className={styles.image_container}>
+                {productData.image ? (
+                    <img
+                        src={`data:image/jpeg;base64,${productData.image}`}
+                        alt={productData.product_name}
+                        className={styles.product_image}
+                    />
+                ) : (
+                    <span>No image</span>
+                )}
+            </div>
             <div className={styles.description_container}>
                 <div className={styles.producer_and_rating}>
                     <span>
@@ -25,13 +35,13 @@ export default function ProductTile({ productData, attributesData }) {
                     <div>
                         <span>
                             {productData.rating_value
-                                ? productData.rating_value
-                                : "0"}
+                                ? productData.rating_value.toFixed(2)
+                                : "0.00"}
                         </span>
                         <span>
                             {`(${
-                                productData.rating_count
-                                    ? productData.rating_count
+                                productData.ratings_count
+                                    ? productData.ratings_count.toFixed(0)
                                     : "0"
                             })`}
                         </span>
@@ -39,7 +49,7 @@ export default function ProductTile({ productData, attributesData }) {
                     </div>
                 </div>
                 <div className={styles.product_name}>
-                    {productData.product_name}
+                    {productData.product_name} (ID = {productData.product_id})
                 </div>
                 <div className={styles.top_attributes_container}>
                     <ul>

@@ -68,7 +68,7 @@ export default function CategoryPage() {
                         <>
                             <div className={styles.category_name_container}>
                                 <span>
-                                    CATEGORY: {categoryName} (ID ={categoryId})
+                                    CATEGORY: {categoryName} (ID = {categoryId})
                                 </span>
                                 <span>
                                     ({loadedProducts.length} items found)
