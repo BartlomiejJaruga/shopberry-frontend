@@ -1,7 +1,10 @@
-
+import NavBar from "@components/NavBar/NavBar";
 
 export default function NotFoundPage() {
     return (
-        <h1>Error 404 - page not found!</h1>
-    )
+        <>
+            <NavBar />
+            <h1>Error 404 - page not found!</h1>
+        </>
+    );
 }

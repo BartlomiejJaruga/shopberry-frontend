@@ -1,3 +1,12 @@
 .homepage_container {
-    margin-top: 3rem;
+    display: flex;
+
+    aside {
+        min-width: 20rem;
+    }
+
+    main {
+        flex-grow: 1;
+        padding: 2em;
+    }
 }

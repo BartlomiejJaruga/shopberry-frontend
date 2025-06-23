@@ -1,19 +1,93 @@
-import { Link } from 'react-router-dom';
+import styles from "./UserSection.module.scss";
 
-import styles from './UserSection.module.scss';
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import User from "@icons/user.svg?react";
+import SignIn from "@icons/sign-in.svg?react";
+import Account from "@icons/account.svg?react";
+import { logoutUser } from "@slices/authSlice";
+import { tokenNamesENUM, userAccountSectionNamesENUM } from "@enums";
+import Heart from "@icons/heart.svg?react";
 
 export default function UserSection() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { isAuthenticated, userData } = useSelector((state) => state.auth);
+
+    const handleSignIn = () => {
+        navigate("/auth?authType=sign_in");
+    };
+
+    const handleSignUp = () => {
+        navigate("/auth?authType=sign_up");
+    };
+
+    const handleLogOut = () => {
+        dispatch(logoutUser());
+
+        localStorage.removeItem(tokenNamesENUM.ACCESS_TOKEN_NAME);
+        localStorage.removeItem(tokenNamesENUM.REFRESH_TOKEN_NAME);
+
+        navigate("/");
+    };
+
     return (
-        <div className={styles.user_section_container}>
-            <div className={styles.user_sign_up_sign_in_container}>
-                <div className={styles.sign_up_button_container}>
-                    <Link to="/auth" className={`${styles.sign_buttons} ${styles.sign_up_button}`}>Sign Up</Link>
+        <>
+            {!isAuthenticated && (
+                <div className={styles.buttons_container}>
+                    <button onClick={handleSignUp}>
+                        <User className={styles.user_icon} />
+                        Sign Up
+                    </button>
+                    <button onClick={handleSignIn}>
+                        Sign In
+                        <SignIn className={styles.sign_in_icon} />
+                    </button>
                 </div>
-                <div className={styles.sign_in_button_container}>
-                    <Link to="/auth" className={`${styles.sign_buttons} ${styles.sign_in_button}`}>Sign In</Link>
-                </div>
-            </div>
-            
-        </div>
+            )}
+
+            {isAuthenticated && (
+                <>
+                    <div className={styles.favourite_products_container}>
+                        <Heart className={styles.heart_icon} />
+                        <div>
+                            <p>Favourite</p>
+                            <p>Products</p>
+                        </div>
+                    </div>
+                    <div className={styles.account_wrapper}>
+                        <div className={styles.account_container}>
+                            <Account className={styles.account_icon} />
+                            <div className={styles.user_names_container}>
+                                <p>{userData.firstName}</p>
+                                <p>{userData.lastName}</p>
+                            </div>
+                        </div>
+                        <div className={styles.dropdown_menu}>
+                            <div
+                                onClick={() => {
+                                    navigate(
+                                        `/account?section=${userAccountSectionNamesENUM.YOUR_ACCOUNT}`
+                                    );
+                                }}
+                            >
+                                Account
+                            </div>
+                            <div
+                                onClick={() => {
+                                    navigate(
+                                        `/account?section=${userAccountSectionNamesENUM.ORDERS}`
+                                    );
+                                }}
+                            >
+                                Orders
+                            </div>
+                            <div>Favourites</div>
+                            <div onClick={handleLogOut}>Log out</div>
+                        </div>
+                    </div>
+                </>
+            )}
+        </>
     );
 }

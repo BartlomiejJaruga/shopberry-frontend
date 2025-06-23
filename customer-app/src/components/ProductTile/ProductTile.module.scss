@@ -1,0 +1,158 @@
+.main_container {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 1em;
+    
+    background-color: $White;
+    box-shadow: 0 0 0.25em rgba(0,0,0, 0.25);
+
+    width: 100%;
+    min-height: 30vh;
+    max-height: 100%;
+    color: $Text-Black-Texts;
+    font-size: 1rem;
+
+    .image_container {
+        flex-grow: 1;
+        min-width: 20em;
+        max-width: 25%;
+        max-height: 100%;
+
+        padding: 1em;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-height: 90%;
+            max-width: 90%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+    }
+
+    .description_container {
+        flex-grow: 2;
+        max-width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        padding: 1em 0;
+
+        font-size: inherit;
+
+        .producer_and_rating {
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+
+            width: 100%;
+            font-size: inherit;
+
+            & > span {
+                font-size: 2em;
+                color: $Text-Black-Headers;
+                @include apply-font($font-heading);
+                font-weight: 500;
+            }
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                font-size: 1.5em;
+                color: $Gold;
+
+                span {
+                    margin-right: 0.25em;
+                }
+
+                .star_icon {
+                    font-size: inherit;
+                    height: 1.1em;
+                    transform: translateY(-5%);
+                    width: auto;
+                    fill: $Gold;
+                }
+            }
+        }
+
+        .product_name {
+            padding: 0.5em 0 2em 0;
+
+            text-align: left;
+            font-size: 1.5em;
+            color: $Text-Black-Texts;
+        }
+
+        .top_attributes_container {
+            color: $Text-Black-SubTexts;
+
+            ul {
+                padding: 0 0 0 1.25em;
+
+                li {
+                    text-align: left;
+                    padding: 0.2em 0;
+                }
+            } 
+            
+        }
+    }
+
+    .price_and_buttons_container {
+        flex-grow: 0.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        .favourite_button_container {
+            place-self: flex-start;
+
+            display: flex;
+            justify-content: flex-end;
+            
+            width: 100%;
+            padding: 0 1em;
+
+            .heart_icon {
+                font-size: inherit;
+                height: 3.5em;
+                width: auto;
+            }
+        }
+
+        .price {
+            font-size: 2em;
+            color: $Burgundy;
+            @include apply-font($font-heading);
+        }
+
+        .add_to_cart_button {
+            padding: 0.5em 2em;
+            border: none;
+            border-radius: 0.5em;
+
+            background-color: $Burgundy;
+            box-shadow: 0.2em 0.2em 0.2em rgba(255,255,255, 0.4) inset,
+                                -0.2em -0.2em 0.2em rgba(0,0,0, 0.7) inset;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+
+            color: $Text-White-Texts;
+            @include apply-font($font-heading);
+            font-size: 1.5em;
+
+            &:hover {
+                background-color: $Burgundy-Hover;
+            }
+        }
+    }
+}

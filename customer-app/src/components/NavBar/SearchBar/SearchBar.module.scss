@@ -1,0 +1,119 @@
+.main_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    flex-grow: 1;
+    max-width: 40vw;
+
+    height: 60%;
+    width: 40vw;
+    font-size: 1rem;
+    background-color: $Anti-Flash-White;
+    border-radius: 0.5em;
+
+    input {
+        background-color: $Anti-Flash-White;
+        border-radius: 0.5em 0 0 0.5em;
+        border: none;
+        border-right: $Burgundy 0.125em solid;
+        box-shadow: 0.2em 0.2em 0.1em rgba(0,0,0, 0.25) inset,
+                    0 -0.1em 0.1em #e6e6e6 inset;
+        
+        width: 100%;
+        padding: 1em 0 0.9em 0.75em;
+        
+        font-size: inherit;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .select_container {
+        position: relative;
+        font-size: inherit;
+        --select_arrow_size: 0.5em;
+
+        select {
+            padding: 1em 3em 0.9em 0.75rem;
+            appearance: none;
+            border: none;
+            background-color: $Anti-Flash-White;
+            font-size: inherit;
+            color: $Burgundy;
+            transition: color 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0em 0.2em 0.1em rgba(0,0,0, 0.25) inset,
+                        0 -0.1em 0.1em #e6e6e6 inset;
+
+            option {
+                color: $Text-Black-Texts;
+            }
+
+            &:hover + .custom_arrow::before {
+                border-top: var(--select_arrow_size) solid $Burgundy-Hover;
+            }
+
+            &:hover {
+                color: $Burgundy-Hover;
+            }
+        }
+        
+        .custom_arrow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 3em;
+            pointer-events: none;
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+
+                left: 50%;
+                top: 55%;
+                transform: translate(-50%, -50%);
+
+                transition: border-top 0.2s ease;
+
+                border-left: var(--select_arrow_size) solid transparent;
+                border-right: var(--select_arrow_size) solid transparent;
+                border-top: var(--select_arrow_size) solid $Burgundy;
+            }
+        }
+    }
+
+    .search_icon_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 100%;
+        width: 3em;
+        min-width: 3rem;
+        border-radius: 0 0.5em 0.5em 0;
+
+        background-color: $Burgundy;
+        transition: 0.2s background-color ease;
+        cursor: pointer;
+
+        font-size: inherit;
+
+        .search_icon {
+            fill: $White;
+            font-size: inherit;
+            height: 1.5em;
+            width: auto;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $Burgundy-Hover;
+            outline: none;
+        }
+    }
+}
