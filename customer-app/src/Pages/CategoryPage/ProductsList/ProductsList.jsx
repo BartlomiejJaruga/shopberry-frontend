@@ -7,7 +7,12 @@ export default function ProductsList({ ProductsDataList }) {
     return (
         <div className={styles.main_container}>
             {ProductsDataList.map((item) => {
-                return <ProductTile productData={item.product} />;
+                return (
+                    <ProductTile
+                        productData={item.product}
+                        attributesData={item.attributes}
+                    />
+                );
             })}
         </div>
     );

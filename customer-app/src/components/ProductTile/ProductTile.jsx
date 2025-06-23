@@ -5,7 +5,7 @@ import { addToCart } from "@slices/cartSlice";
 import Star from "@icons/star.svg?react";
 import Heart from "@icons/heart.svg?react";
 
-export default function ProductTile({ productData }) {
+export default function ProductTile({ productData, attributesData }) {
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
@@ -43,10 +43,13 @@ export default function ProductTile({ productData }) {
                 </div>
                 <div className={styles.top_attributes_container}>
                     <ul>
-                        <li>Attr 1: value</li>
-                        <li>Attr 2: some value</li>
-                        <li>Attr 3: some other value</li>
-                        <li>Attr 4: even some other value</li>
+                        {attributesData.slice(0, 4).map((attr, index) => (
+                            <li key={index}>
+                                {`${attr.attribute?.attribute_name ?? "?"}: ${
+                                    attr.value ?? "?"
+                                }`}
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>
