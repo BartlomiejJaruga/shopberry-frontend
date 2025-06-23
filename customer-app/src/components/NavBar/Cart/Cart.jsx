@@ -2,25 +2,30 @@ import styles from "./Cart.module.scss";
 
 import { useSelector } from "react-redux";
 import CartIcon from "@icons/cart.svg?react";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-    const itemsInCartLenght = useSelector((state) => state.cart.items.length);
-    const itemsInCartPrice = useSelector((state) =>
-        state.cart.items.reduce((acc, item) => acc + item.price, 0)
-    );
+    const navigate = useNavigate();
+    const itemsInCartLength = useSelector((state) => state.cart.items.length);
+    const totalCartPrice = useSelector((state) => state.cart.totalCartPrice);
 
     return (
-        <div className={styles.cart_container}>
+        <div
+            className={styles.cart_container}
+            onClick={() => {
+                navigate("/cart");
+            }}
+        >
             <div className={styles.cart_icon_container}>
                 <CartIcon className={styles.cart_icon} />
-                {itemsInCartLenght > 0 && (
+                {itemsInCartLength > 0 && (
                     <div className={styles.cart_items_counter}>
-                        {itemsInCartLenght}
+                        {itemsInCartLength}
                     </div>
                 )}
             </div>
             <div className={styles.cart_price}>
-                {itemsInCartPrice.toFixed(2)} zł
+                {totalCartPrice.toFixed(2)} zł
             </div>
         </div>
     );
