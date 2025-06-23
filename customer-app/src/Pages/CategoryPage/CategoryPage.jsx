@@ -64,7 +64,7 @@ export default function CategoryPage() {
         } else {
             getAllCategoryProductsFromDatabase();
         }
-    }, [categoryId]);
+    }, [categoryId, searchTerm]);
 
     return (
         <>
