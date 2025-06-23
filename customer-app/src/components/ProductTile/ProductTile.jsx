@@ -9,7 +9,16 @@ export default function ProductTile({ productData, attributesData }) {
     const dispatch = useDispatch();
 
     const handleAddToCart = () => {
-        //dispatch(addToCart(productData));
+        const productObject = {
+            productId: productData.product_id,
+            productName: productData.product_name,
+            producerName: productData.producer.producer_name,
+            productPrice: productData.product_price,
+            productImage: productData.image,
+            productCount: 1,
+        };
+
+        dispatch(addToCart(productObject));
     };
 
     return (
