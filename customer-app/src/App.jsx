@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "@pages/HomePage/HomePage";
-import ProductsPage from "@pages/ProductsPage/ProductsPage";
 import AuthPage from "@pages/AuthPage/AuthPage";
 import NotFoundPage from "@pages/NotFoundPage/NotFoundPage";
 import CategoryPage from "@pages/CategoryPage/CategoryPage";
@@ -42,7 +41,6 @@ function App() {
             <Routes>
                 {/* Public GUEST routes */}
                 <Route path="/" element={<HomePage />} />
-                <Route path="/products" element={<ProductsPage />} />
                 <Route path="/auth" element={<AuthPage />} />
                 <Route path="/category" element={<CategoryPage />} />
                 <Route path="/unauthorized" element={<UnauthorizedPage />} />

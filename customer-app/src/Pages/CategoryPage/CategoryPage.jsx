@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import LoadingIndicator from "@components/LoadingIndicator/LoadingIndicator";
 import CategoriesDropdownMenu from "@components/CategoriesDropdownMenu/CategoriesDropdownMenu";
 import { useSearchParams } from "react-router-dom";
+import ProductsList from "./ProductsList/ProductsList";
 
 export default function CategoryPage() {
     const [searchParams] = useSearchParams();
@@ -73,29 +74,7 @@ export default function CategoryPage() {
                                     ({loadedProducts.length} items found)
                                 </span>
                             </div>
-                            <div className={styles.product_list}>
-                                {loadedProducts.map((item) => {
-                                    const p = item.product;
-                                    return (
-                                        <div
-                                            key={p.product_id}
-                                            className={styles.product_card}
-                                        >
-                                            <h3>{p.product_name}</h3>
-                                            <p>
-                                                Producer:
-                                                {p.producer
-                                                    ? p.producer.producer_name
-                                                    : "Unknown"}
-                                            </p>
-                                            <p>
-                                                Price: $
-                                                {p.product_price.toFixed(2)}
-                                            </p>
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                            <ProductsList ProductsDataList={loadedProducts} />
                         </>
                     )}
                 </main>
