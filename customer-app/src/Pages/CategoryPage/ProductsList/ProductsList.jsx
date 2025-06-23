@@ -9,6 +9,7 @@ export default function ProductsList({ ProductsDataList }) {
             {ProductsDataList.map((item) => {
                 return (
                     <ProductTile
+                        key={item.product.product_id}
                         productData={item.product}
                         attributesData={item.attributes}
                     />
