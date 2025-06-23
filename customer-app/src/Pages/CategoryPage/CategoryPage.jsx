@@ -20,7 +20,7 @@ export default function CategoryPage() {
 
         try {
             const response = await axiosInstance.get(
-                `/v1/categories/${categoryId}/products`
+                `/v1/products?categoryId=${categoryId}`
             );
 
             setLoadedProducts(response.data);
