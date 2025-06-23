@@ -3,23 +3,36 @@ import styles from "./SearchBar.module.scss";
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Search from "@icons/search.svg?react";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
+    const navigate = useNavigate();
     const categories = useSelector((state) => state.categories.mainCategories);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const searchButtonRef = useRef(null);
 
     const searchForItem = () => {
-        const searchBarData = {
-            searchTerm: searchTerm,
-            selectedCategory: selectedCategory,
-        };
-
-        console.log(searchBarData);
-
         if (searchButtonRef.current) {
             searchButtonRef.current.blur();
+        }
+
+        if (!searchTerm) return;
+
+        sessionStorage.removeItem("cached_category_products");
+
+        if (selectedCategory) {
+            const foundCategory = categories.find(
+                (cat) => cat.category_id == selectedCategory
+            );
+
+            navigate(
+                `/category?search=${searchTerm}&id=${selectedCategory}&name=${foundCategory.category_name}`
+            );
+        } else {
+            navigate(
+                `/category?search=${searchTerm}&id=${-1}&name=All Categories`
+            );
         }
     };
 

@@ -12,16 +12,35 @@ export default function CategoryPage() {
     const [searchParams] = useSearchParams();
     const categoryId = searchParams.get("id");
     const categoryName = searchParams.get("name");
+    const searchTerm = searchParams.get("search");
     const [isPageGettingLoaded, setIsPageGettingLoaded] = useState(true);
     const [loadedProducts, setLoadedProducts] = useState([]);
+
+    const createRequestURL = (categoryId, searchTerm) => {
+        let requestURL = "/v1/products";
+        let alreadyConcatted = false;
+
+        if (searchTerm) {
+            requestURL = requestURL.concat(`?productName=${searchTerm}`);
+            alreadyConcatted = true;
+        }
+
+        if (categoryId && alreadyConcatted && categoryId !== "-1") {
+            requestURL = requestURL.concat(`&categoryId=${categoryId}`);
+            alreadyConcatted = true;
+        } else if (categoryId && categoryId !== "-1") {
+            requestURL = requestURL.concat(`?categoryId=${categoryId}`);
+        }
+
+        return requestURL;
+    };
 
     const getAllCategoryProductsFromDatabase = async () => {
         setIsPageGettingLoaded(true);
 
         try {
-            const response = await axiosInstance.get(
-                `/v1/products?categoryId=${categoryId}`
-            );
+            const requestURL = createRequestURL(categoryId, searchTerm);
+            const response = await axiosInstance.get(requestURL);
 
             setLoadedProducts(response.data);
             sessionStorage.setItem(
