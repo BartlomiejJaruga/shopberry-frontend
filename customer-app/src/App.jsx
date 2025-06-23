@@ -10,6 +10,7 @@ import "./App.scss";
 import { useDispatch } from "react-redux";
 import { authenticateUser, setAuthGettingLoaded } from "@slices/authSlice";
 import UserAccountPage from "@pages/UserAccountPage/UserAccountPage";
+import CartPage from "@pages/CartPage/CartPage";
 
 function App() {
     const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/auth" element={<AuthPage />} />
                 <Route path="/category" element={<CategoryPage />} />
+                <Route path="/cart" element={<CartPage />} />
                 <Route path="/unauthorized" element={<UnauthorizedPage />} />
                 <Route path="*" element={<NotFoundPage />} />
 
