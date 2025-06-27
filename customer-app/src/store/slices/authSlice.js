@@ -42,8 +42,6 @@ export const authSlice = createSlice({
             state.userData.lastName = null;
             state.userData.uuid = null;
             state.userData.userType = userRolesENUM.GUEST;
-
-            state.isAuthGettingLoaded = true;
         },
         setAuthGettingLoaded(state, action) {
             state.isAuthGettingLoaded = action.payload.isAuthGettingLoaded;
